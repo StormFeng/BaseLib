@@ -3,18 +3,33 @@
     package="com.huashitu.liveradio">
 
     <application
-        android:name="com.midian.base.app.AppContext"
+        android:name="com.huashitu.liveradio.app.BaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.Activity_Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--微信-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity android:name=".activity.Activity_Register"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <activity android:name=".activity.Activity_Main"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
     </application>
 </manifest>
