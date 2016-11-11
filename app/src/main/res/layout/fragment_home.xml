@@ -5,11 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <net.lucode.hackware.magicindicator.MagicIndicator
-        android:id="@+id/magic_Indicator"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:background="@color/theme">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="27dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_question"/>
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_Indicator"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_message"
+                android:id="@+id/imageView" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_Arrow"
+            android:layout_width="18dp"
+            android:layout_height="7dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:background="@drawable/icon_arrow_down"/>
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

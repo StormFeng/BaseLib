@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.bishilai.thirdpackage.R;
+import com.jaeger.library.StatusBarUtil;
 import com.midian.base.api.ApiCallback;
 import com.midian.base.app.AppContext;
 import com.midian.base.app.AppManager;
@@ -39,7 +43,13 @@ public class BaseActivity extends Activity implements ApiCallback,OnClickListene
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AppManager.getAppManager().addActivity(this);
-
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			Window window = getWindow();
+			window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		} else {
+			StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+			StatusBarUtil.setTranslucentForImageViewInFragment(_activity, 0, null);
+		}
 		_activity = this;
 		ac = (AppContext) getApplication();
 		_Intent = getIntent();

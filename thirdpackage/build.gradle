@@ -51,4 +51,5 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.zhy:flowlayout-lib:1.0.3'
     compile 'com.github.hackware1993:MagicIndicator:1.4.0'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.9.7'
 }

@@ -63,13 +63,6 @@ public class Activity_Login extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        } else {
-            StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
-            StatusBarUtil.setTranslucentForImageViewInFragment(_activity, 0, null);
-        }
         mShareAPI = UMShareAPI.get( this );
     }
 

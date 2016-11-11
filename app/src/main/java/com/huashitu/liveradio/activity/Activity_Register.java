@@ -97,5 +97,4 @@ public class Activity_Register extends BaseActivity {
             return;
         }
     }
-
 }

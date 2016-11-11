@@ -8,12 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageView;
 import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.adapter.Adapter_Main;
 import com.huashitu.liveradio.widget.ScaleTransitionPagerTitleView;
 import com.midian.base.base.BaseFragment;
-
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -30,17 +29,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
+ * 首页
  * Created by Administrator on 2016/11/10 0010.
  */
 
-public class Fragment_Home extends BaseFragment{
+public class Fragment_Home extends BaseFragment {
     @BindView(R.id.magic_Indicator)
     MagicIndicator magicIndicator;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
+    @BindView(R.id.iv_Arrow)
+    ImageView ivArrow;
 
-    private List<String> mDataList=new ArrayList<>();
-    private List<Fragment> fragments=new ArrayList<>();
+    private List<String> mDataList = new ArrayList<>();
+    private List<Fragment> fragments = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,16 +51,39 @@ public class Fragment_Home extends BaseFragment{
         mDataList.add("关注");
         mDataList.add("热门");
         mDataList.add("附近");
-        for(int i=0;i<3;i++){
-            fragments.add(new Fragment_Attention());
-        }
-        viewPager.setAdapter(new Adapter_Main(fm,fragments));
+        fragments.add(new Fragment_Attention());
+        fragments.add(new Fragment_Hot());
+        fragments.add(new Fragment_Nearby());
+        viewPager.setAdapter(new Adapter_Main(fm, fragments));
         initMagicIndicator2();
+        viewPager.setCurrentItem(1);
+        viewPager.setOnPageChangeListener(onPageChangeListener);
         return v;
     }
 
+    ViewPager.OnPageChangeListener onPageChangeListener=new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            if(position==1){
+                ivArrow.setBackgroundResource(R.drawable.icon_arrow_down);
+            }else{
+                ivArrow.setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
     private void initMagicIndicator2() {
-        magicIndicator.setBackgroundColor(Color.WHITE);
+        magicIndicator.setBackgroundColor(Color.TRANSPARENT);
         CommonNavigator commonNavigator = new CommonNavigator(_activity);
         commonNavigator.setAdjustMode(true);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
@@ -74,8 +99,8 @@ public class Fragment_Home extends BaseFragment{
                 SimplePagerTitleView simplePagerTitleView = new ScaleTransitionPagerTitleView(context);
                 simplePagerTitleView.setText(mDataList.get(index));
                 simplePagerTitleView.setTextSize(18);
-                simplePagerTitleView.setNormalColor(Color.parseColor("#616161"));
-                simplePagerTitleView.setSelectedColor(Color.parseColor("#f57c00"));
+                simplePagerTitleView.setNormalColor(Color.parseColor("#FFFFFF"));
+                simplePagerTitleView.setSelectedColor(Color.parseColor("#FFFFFF"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

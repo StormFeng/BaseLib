@@ -19,24 +19,28 @@
             android:layout_height="1dp"
             android:background="@color/divide_line"/>
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="46.7dp"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:gravity="center">
             <RadioButton
+                android:id="@+id/radio_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
-                android:button="@drawable/icon_home_y"/>
+                android:button="@drawable/radio_home"/>
             <View
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"/>
             <RadioButton
+                android:id="@+id/radio_Person"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="60dp"
-                android:button="@drawable/icon_person_n"/>
+                android:button="@drawable/radio_person"/>
         </RadioGroup>
     </LinearLayout>
 
@@ -45,6 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="12dp"
         android:src="@drawable/icon_camera"/>
 </RelativeLayout>
