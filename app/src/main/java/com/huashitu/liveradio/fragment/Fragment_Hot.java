@@ -1,41 +1,75 @@
 package com.huashitu.liveradio.fragment;
 
-import com.huashitu.liveradio.datasource.FragmentHotDataResource;
-import com.huashitu.liveradio.tpl.Fragment_HotBotTpl;
-import com.huashitu.liveradio.tpl.Fragment_HotTopTpl;
-import com.midian.base.base.BaseMultiTypeListFragment;
-import com.midian.base.widget.pulltorefresh.listviewhelper.IDataAdapter;
-import com.midian.base.widget.pulltorefresh.listviewhelper.IDataSource;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.apkfuns.logutils.LogUtils;
+import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.adapter.Adapter_Attention;
+import com.huashitu.liveradio.adapter.Adapter_Hot;
+import com.huashitu.liveradio.bean.AttentionBean;
+import com.huashitu.liveradio.dao.Dao;
+import com.midian.base.base.BaseFragment;
+import com.midian.base.widget.Banner;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 热门
- * Created by Administrator on 2016/11/11 0011.
+ * Created by Administrator on 2016/11/10 0010.
  */
 
-public class Fragment_Hot extends BaseMultiTypeListFragment {
+public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
+
+    @BindView(R.id.recycleView)
+    RecyclerView recycleView;
+    @BindView(R.id.swipeLayout)
+    SwipeRefreshLayout swipeLayout;
+
+    private Banner banner;
+
+    private Adapter_Hot adapterHot;
+    private List<Integer> images=new ArrayList<>();
+    private View topItem;
 
     @Override
-    protected IDataSource<ArrayList> getDataSource() {
-        return new FragmentHotDataResource(_activity);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_attention, null);
+        ButterKnife.bind(this, v);
+        topItem=inflater.inflate(R.layout.item_hottop, null);
+        init();
+        return v;
+    }
+
+    private void init(){
+        recycleView.setLayoutManager(new LinearLayoutManager(_activity));
+        adapterHot = new Adapter_Hot(_activity, Dao.getHotBean());
+        banner = (Banner) topItem.findViewById(R.id.banner);
+        banner.setBannerStyle(Banner.CIRCLE_INDICATOR);//设置圆形指示器
+        banner.setIndicatorGravity(Banner.CENTER);
+        banner.isAutoPlay(true);
+        banner.setDelayTime(5000);//设置轮播间隔时间
+        for (int i = 0; i < 3; i++) {
+            images.add(R.drawable.icon_banner);
+            LogUtils.e("添加数据");
+        }
+        banner.setImages(images.toArray());
+        adapterHot.addHeaderView(topItem,0);
+        recycleView.setAdapter(adapterHot);
     }
 
     @Override
-    protected ArrayList<Class> getTemplateClasses() {
-        listView.setDivider(null);
-        ArrayList<Class> tpls=new ArrayList<>();
-        tpls.add(Fragment_HotTopTpl.class);
-        tpls.add(Fragment_HotBotTpl.class);
-        return tpls;
-    }
-
-    @Override
-    public void onEndRefresh(IDataAdapter adapter, Object result) {
-
-    }
-
-    @Override
-    public void onEndLoadMore(IDataAdapter adapter, Object result) {
+    public void onRefresh() {
 
     }
 }

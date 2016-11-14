@@ -1,17 +1,11 @@
 package com.huashitu.liveradio.activity;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RadioGroup;
-
 import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.fragment.Fragment_Home;
 import com.huashitu.liveradio.fragment.Fragment_Person;
-import com.jaeger.library.StatusBarUtil;
 import com.midian.base.base.BaseFragmentActivity;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

@@ -1,5 +1,6 @@
 package com.huashitu.liveradio.app;
 
+import com.huashitu.liveradio.api.ThisApiClient;
 import com.midian.base.app.AppContext;
 import com.midian.base.util.ShareUtil;
 
@@ -12,5 +13,6 @@ public class BaseApplication extends AppContext {
     public void onCreate() {
         super.onCreate();
         ShareUtil.init();
+        ThisApiClient.init(this);
     }
 }

@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:textSize="15.3sp"
+            android:singleLine="true"
             android:hint="手机号"/>
         <View
             android:layout_width="match_parent"
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="31.3dp"
             android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/et_Code"
                 android:layout_width="0dp"
@@ -51,7 +53,11 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:textSize="15.3sp"
+                android:inputType="number"
+                android:maxLength="6"
+                android:lines="1"
                 android:hint="验证码"/>
+
             <Button
                 android:id="@+id/btn_Code"
                 android:layout_width="60dp"
@@ -80,6 +86,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:textSize="15.3sp"
+            android:singleLine="true"
             android:hint="密码"/>
         <View
             android:layout_width="match_parent"
