@@ -9,4 +9,6 @@ public class Constant {
     public static String BASEURL="http://115.159.145.219:8080/SanhaiApp";
 
     public static String LOGIN=BASEURL+"/user/login";
+    public static String REGISTER=BASEURL+"/user/register";
+    public static String SENDCODE=BASEURL+"/validateCode/send_code";
 }

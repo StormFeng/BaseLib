@@ -7,10 +7,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.api.AppUtil;
 import com.huashitu.liveradio.widget.BaseToast;
+import com.midian.base.api.ApiCallback;
 import com.midian.base.base.BaseActivity;
+import com.midian.base.bean.NetResult;
 import com.midian.base.util.AnimatorUtils;
 import com.midian.base.util.FormatUtils;
+import com.midian.base.util.UIHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,12 +59,49 @@ public class Activity_Register extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_Code:
                 ifPhoneRight();
+                String type="1";
+                AppUtil.getApiClient(ac).sendCode(phone,pass,type,apiCallback);
                 break;
             case R.id.btn_Register:
                 ifAvaliable();
+                AppUtil.getApiClient(ac).register(phone,pass,code,apiCallback);
                 break;
         }
     }
+
+    ApiCallback apiCallback=new ApiCallback() {
+        @Override
+        public void onApiStart(String tag) {
+
+        }
+
+        @Override
+        public void onApiLoading(long count, long current, String tag) {
+
+        }
+
+        @Override
+        public void onApiSuccess(NetResult res, String tag) {
+            if(res.isOK()){
+                if("sendCode".equals(tag)){
+                    UIHelper.t(_activity,"验证码已发送至手机");
+                }
+            }else{
+                ac.handleErrorCode(_activity,res.getRet_info());
+            }
+        }
+
+        @Override
+        public void onApiFailure(Throwable t, int errorNo, String strMsg, String tag) {
+
+        }
+
+        @Override
+        public void onParseError(String tag) {
+
+        }
+    };
+
 
     private void ifPhoneRight(){
         if("".equals(phone)){

@@ -15,10 +15,10 @@ public class LoginBean extends NetResult {
 
     private Content content;
 
-    public static ActivitiesBean parse(String json) throws AppException {
-        ActivitiesBean res = new ActivitiesBean();
+    public static LoginBean parse(String json) throws AppException {
+        LoginBean res = new LoginBean();
         try {
-            res = gson.fromJson(json, ActivitiesBean.class);
+            res = gson.fromJson(json, LoginBean.class);
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
             throw AppException.json(e);

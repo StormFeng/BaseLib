@@ -9,8 +9,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.api.AppUtil;
 import com.huashitu.liveradio.widget.BaseToast;
+import com.midian.base.api.ApiCallback;
 import com.midian.base.base.BaseActivity;
+import com.midian.base.bean.NetResult;
 import com.midian.base.util.AnimatorUtils;
 import com.midian.base.util.FormatUtils;
 import com.midian.base.util.UIHelper;
@@ -65,9 +68,38 @@ public class Activity_Login extends BaseActivity {
         phone=etPhone.getText().toString();
         switch (view.getId()) {
             case R.id.btn_Login:
-//                ifAvaliable();
-//                AppUtil.getApiClient(ac).login(ac.getClientKey(),);
-                UIHelper.jump(_activity,Activity_Main.class);
+                ifAvaliable();
+                String phone=etPhone.getText().toString();
+                String pass=etPass.getText().toString();
+                AppUtil.getApiClient(ac).login(phone, pass, new ApiCallback() {
+                    @Override
+                    public void onApiStart(String tag) {
+
+                    }
+
+                    @Override
+                    public void onApiLoading(long count, long current, String tag) {
+
+                    }
+
+                    @Override
+                    public void onApiSuccess(NetResult res, String tag) {
+                        if(res.isOK()){
+                            LogUtils.e(res);
+                            UIHelper.jump(_activity,Activity_Main.class);
+                        }
+                    }
+
+                    @Override
+                    public void onApiFailure(Throwable t, int errorNo, String strMsg, String tag) {
+
+                    }
+
+                    @Override
+                    public void onParseError(String tag) {
+
+                    }
+                });
                 break;
             case R.id.tv_ForgetPass:
                 break;
