@@ -41,8 +41,6 @@ public class Fragment_Person extends BaseFragment {
     TextView ivAccount;
     @BindView(R.id.tv_Sign)
     TextView tvSign;
-    @BindView(R.id.ll_Top)
-    LinearLayout llTop;
     @BindView(R.id.ll_LiveRadio)
     LinearLayout llLiveRadio;
     @BindView(R.id.ll_Attention)
@@ -67,14 +65,12 @@ public class Fragment_Person extends BaseFragment {
         return v;
     }
 
-    @OnClick({R.id.iv_Search, R.id.iv_Message, R.id.ll_Top, R.id.ll_LiveRadio, R.id.ll_Attention, R.id.ll_Fans, R.id.v_Contribution, R.id.v_Profit, R.id.v_Account, R.id.v_Grade, R.id.v_Setting})
+    @OnClick({R.id.iv_Search, R.id.iv_Message, R.id.ll_LiveRadio, R.id.ll_Attention, R.id.ll_Fans, R.id.v_Contribution, R.id.v_Profit, R.id.v_Account, R.id.v_Grade, R.id.v_Setting})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_Search:
                 break;
             case R.id.iv_Message:
-                break;
-            case R.id.ll_Top:
                 break;
             case R.id.ll_LiveRadio:
                 break;

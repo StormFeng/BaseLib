@@ -1,55 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/ll_Top"
+                    <View
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_person_bg"
                         android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:paddingLeft="14dp"
-                            android:paddingRight="14dp"
-                            android:paddingTop="27dp">
-
-                            <ImageView
-                                android:id="@+id/iv_Search"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icon_question"/>
-
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="1dp"/>
-                            <ImageView
-                                android:id="@+id/iv_Message"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icon_message"/>
-                        </LinearLayout>
+                    </View>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/icon_temphead"
+                        android:alpha="0.08"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/imageView3" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                         <com.makeramen.roundedimageview.RoundedImageView
                             android:id="@+id/iv_Head"
                             android:layout_width="68dp"
@@ -57,7 +43,7 @@
                             android:src="@drawable/icon_temphead"
                             android:scaleType="centerCrop"
                             app:riv_corner_radius="34dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="70dp"
                             android:layout_gravity="center_horizontal"/>
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -74,14 +60,14 @@
                                 android:textColor="#FEFEFE"/>
                             <ImageView
                                 android:id="@+id/iv_Sex"
-                                android:layout_width="14dp"
-                                android:layout_height="14dp"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
                                 android:layout_marginLeft="6dp"
                                 android:src="@drawable/icon_women"/>
                             <TextView
                                 android:id="@+id/iv_Grade"
                                 android:layout_width="wrap_content"
-                                android:layout_height="14dp"
+                                android:layout_height="16dp"
                                 android:layout_marginLeft="6dp"
                                 android:text="8"
                                 android:drawableLeft="@drawable/icon_star"
@@ -108,7 +94,6 @@
                             android:textSize="14sp"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp" />
-
                         <TextView
                             android:id="@+id/tv_Sign"
                             android:layout_width="wrap_content"
@@ -120,88 +105,75 @@
                             android:ellipsize="end"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="110dp"
+                            android:background="@drawable/icon_radius_bg"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="14dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:id="@+id/ll_LiveRadio"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="27dp"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="直播"
+                                    android:textSize="13sp"
+                                    android:textColor="#B3B1B4"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="206"
+                                    android:textSize="17sp"
+                                    android:textColor="#9B9A9C"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/ll_Attention"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="27dp"
+                                android:layout_marginLeft="86dp"
+                                android:layout_marginRight="86dp"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="关注"
+                                    android:textSize="13sp"
+                                    android:textColor="#B3B1B4"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="206"
+                                    android:textSize="17sp"
+                                    android:textColor="#9B3AC8"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/ll_Fans"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="27dp"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="粉丝"
+                                    android:textSize="13sp"
+                                    android:textColor="#B3B1B4"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="206"
+                                    android:textSize="17sp"
+                                    android:textColor="#9B9A9C"/>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/icon_temphead"
-                        android:alpha="0.08"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:id="@+id/imageView3" />
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="110dp"
-                    android:background="@drawable/icon_radius_bg"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="230dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:id="@+id/ll_LiveRadio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="27dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="直播"
-                            android:textSize="13sp"
-                            android:textColor="#B3B1B4"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="206"
-                            android:textSize="17sp"
-                            android:textColor="#9B9A9C"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ll_Attention"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="27dp"
-                        android:layout_marginLeft="86dp"
-                        android:layout_marginRight="86dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="关注"
-                            android:textSize="13sp"
-                            android:textColor="#B3B1B4"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="206"
-                            android:textSize="17sp"
-                            android:textColor="#9B3AC8"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/ll_Fans"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="27dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="粉丝"
-                            android:textSize="13sp"
-                            android:textColor="#B3B1B4"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="206"
-                            android:textSize="17sp"
-                            android:textColor="#9B9A9C"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-            </RelativeLayout>
             <TextView
                 android:id="@+id/v_Contribution"
                 android:layout_width="match_parent"
@@ -337,4 +309,31 @@
                 android:drawableRight="@drawable/icon_right_arrow"/>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:paddingTop="27dp">
+
+        <ImageView
+            android:id="@+id/iv_Search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_question"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="1dp"/>
+        <ImageView
+            android:id="@+id/iv_Message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_message"/>
+    </LinearLayout>
+
+</RelativeLayout>

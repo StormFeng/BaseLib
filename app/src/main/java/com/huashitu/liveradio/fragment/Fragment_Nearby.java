@@ -48,6 +48,10 @@ public class Fragment_Nearby extends BaseFragment implements SwipeRefreshLayout.
         recycleView.setLayoutManager(new GridLayoutManager(_activity,3,LinearLayoutManager.VERTICAL,false));
         adapterNearby=new Adapter_Nearby(beans);
         View v=LayoutInflater.from(_activity).inflate(R.layout.layout_nodata,null);
+        View vv=LayoutInflater.from(_activity).inflate(R.layout.item_nearbytop,null);
+        if(beans.size()>0){
+            adapterNearby.addHeaderView(vv);
+        }
         adapterNearby.setEmptyView(v);
         recycleView.setAdapter(adapterNearby);
     }

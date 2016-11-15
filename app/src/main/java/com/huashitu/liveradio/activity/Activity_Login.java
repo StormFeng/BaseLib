@@ -1,20 +1,15 @@
 package com.huashitu.liveradio.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.widget.BaseToast;
-import com.jaeger.library.StatusBarUtil;
 import com.midian.base.base.BaseActivity;
 import com.midian.base.util.AnimatorUtils;
 import com.midian.base.util.FormatUtils;
@@ -22,9 +17,7 @@ import com.midian.base.util.UIHelper;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
-
 import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,6 +66,7 @@ public class Activity_Login extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_Login:
 //                ifAvaliable();
+//                AppUtil.getApiClient(ac).login(ac.getClientKey(),);
                 UIHelper.jump(_activity,Activity_Main.class);
                 break;
             case R.id.tv_ForgetPass:

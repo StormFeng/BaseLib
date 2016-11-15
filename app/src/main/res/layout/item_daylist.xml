@@ -96,28 +96,26 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="贡献"
                     android:textSize="14sp"
-                    android:layout_marginTop="7dp"
                     android:textColor="#B3B1B4"/>
                 <TextView
                     android:id="@+id/tv_Contribution"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="14sp"
-                    android:layout_marginTop="7dp"
                     android:textColor="#9B3AC8"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="票"
                     android:textSize="14sp"
-                    android:layout_marginTop="7dp"
                     android:textColor="#B3B1B4"/>
             </LinearLayout>
         </LinearLayout>
@@ -187,28 +185,27 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:gravity="center"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="贡献"
                     android:textSize="14sp"
-                    android:layout_marginTop="7dp"
                     android:textColor="#B3B1B4"/>
                 <TextView
                     android:id="@+id/ttv_Contribution"
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="1"
                     android:textSize="14sp"
-                    android:layout_marginTop="7dp"
                     android:textColor="#9B3AC8"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="15dp"
+                    android:layout_height="wrap_content"
                     android:text="票"
                     android:textSize="14sp"
-                    android:layout_marginTop="7dp"
                     android:textColor="#B3B1B4"/>
             </LinearLayout>
         </LinearLayout>
