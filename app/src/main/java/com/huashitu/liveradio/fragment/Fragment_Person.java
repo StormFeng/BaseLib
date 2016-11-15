@@ -8,8 +8,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.activity.ActivityContribution;
+import com.huashitu.liveradio.activity.Activity_Profit;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.midian.base.base.BaseFragment;
+import com.midian.base.util.UIHelper;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -79,8 +83,10 @@ public class Fragment_Person extends BaseFragment {
             case R.id.ll_Fans:
                 break;
             case R.id.v_Contribution:
+                UIHelper.jump(_activity, ActivityContribution.class);
                 break;
             case R.id.v_Profit:
+                UIHelper.jump(_activity, Activity_Profit.class);
                 break;
             case R.id.v_Account:
                 break;

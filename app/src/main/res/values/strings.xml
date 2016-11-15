@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">LiveRadio</string>
+    <string name="count">贡献 <font color="#9B3AC8">%1$s</font>票</string>
 </resources>
