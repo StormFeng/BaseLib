@@ -64,4 +64,7 @@
     <string name="is_update_version">是否要下载最新版本软件</string>
     <string name="ok">确定</string>
     <string name="warm_prompt">温馨提示：</string>
+
+    <string name="no_camera_permission">没有权限使用摄像头，请开启摄像头权限</string>
+    <string name="no_record_audio_permission">没有权限使用录音，请开启录音权限</string>
 </resources>
