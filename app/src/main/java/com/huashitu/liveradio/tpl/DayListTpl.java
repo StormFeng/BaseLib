@@ -96,6 +96,7 @@ public class DayListTpl extends BaseTpl<NetResult> {
             llNum2.setVisibility(VISIBLE);
             rlTop.setVisibility(GONE);
             llNormal.setVisibility(VISIBLE);
+            tvRanking.setText("No."+position);
         }
     }
 }

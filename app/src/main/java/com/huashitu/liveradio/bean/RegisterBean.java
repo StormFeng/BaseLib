@@ -5,6 +5,7 @@ import com.midian.base.app.AppException;
 import com.midian.base.bean.NetResult;
 
 /**
+ * 注册
  * Created by Administrator on 2016/11/15 0015.
  */
 

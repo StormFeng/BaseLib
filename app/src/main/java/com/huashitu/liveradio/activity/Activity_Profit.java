@@ -39,13 +39,14 @@ public class Activity_Profit extends BaseActivity {
         ButterKnife.bind(this);
         topbar.setLeftImageButton(R.drawable.icon_back, UIHelper.finish(_activity));
         topbar.setTitle("我的收益");
-        topbar.setRightText("领取记录",null);
+        topbar.setRightText("领取记录",UIHelper.OnClickJump(_activity,Activity_CollectRecords.class));
     }
 
     @OnClick({R.id.btn_Exchange, R.id.btn_ReceiveTip, R.id.tv_CommonProblem})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_Exchange:
+                UIHelper.jump(_activity,Activity_Exchange.class);
                 break;
             case R.id.btn_ReceiveTip:
                 break;

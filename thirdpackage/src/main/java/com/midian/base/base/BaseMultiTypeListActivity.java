@@ -2,18 +2,11 @@ package com.midian.base.base;
 
 import java.util.ArrayList;
 
-//import midian.baselib.bean.NetResult;
-//import midian.baselib.shizhefei.view.listviewhelper.IDataAdapter;
-//import midian.baselib.shizhefei.view.listviewhelper.IDataSource;
-//import midian.baselib.shizhefei.view.listviewhelper.ListViewHelper;
-//import midian.baselib.shizhefei.view.listviewhelper.OnStateChangeListener;
-//import midian.baselib.widget.pulltorefresh.PullToRefreshListView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-
 import com.bishilai.thirdpackage.R;
 import com.midian.base.bean.NetResult;
 import com.midian.base.widget.pulltorefresh.PullToRefreshListView;
@@ -21,8 +14,6 @@ import com.midian.base.widget.pulltorefresh.listviewhelper.IDataAdapter;
 import com.midian.base.widget.pulltorefresh.listviewhelper.IDataSource;
 import com.midian.base.widget.pulltorefresh.listviewhelper.ListViewHelper;
 import com.midian.base.widget.pulltorefresh.listviewhelper.OnStateChangeListener;
-
-//import com.midian.baselib.R;
 
 /**
  * 列表activity基类 Created by XuYang on 15/4/15.

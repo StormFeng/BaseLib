@@ -1,5 +1,7 @@
 package com.huashitu.liveradio.app;
 
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
 import com.huashitu.liveradio.api.ThisApiClient;
 import com.midian.base.app.AppContext;
 import com.midian.base.util.ShareUtil;
@@ -14,5 +16,6 @@ public class BaseApplication extends AppContext {
         super.onCreate();
         ShareUtil.init();
         ThisApiClient.init(this);
+        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY,"fVFi9etkRpo4Bbmi2N8N11ac");
     }
 }

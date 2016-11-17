@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.huashitu.liveradio.R;
-import com.huashitu.liveradio.activity.ActivityContribution;
+import com.huashitu.liveradio.activity.Activity_Contribution;
 import com.huashitu.liveradio.activity.Activity_Profit;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.midian.base.base.BaseFragment;
@@ -79,7 +79,7 @@ public class Fragment_Person extends BaseFragment {
             case R.id.ll_Fans:
                 break;
             case R.id.v_Contribution:
-                UIHelper.jump(_activity, ActivityContribution.class);
+                UIHelper.jump(_activity, Activity_Contribution.class);
                 break;
             case R.id.v_Profit:
                 UIHelper.jump(_activity, Activity_Profit.class);

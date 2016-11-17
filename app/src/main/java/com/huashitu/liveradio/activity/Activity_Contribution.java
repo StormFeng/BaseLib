@@ -42,7 +42,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2016/11/15 0015.
  */
 
-public class ActivityContribution extends BaseFragmentActivity {
+public class Activity_Contribution extends BaseFragmentActivity {
 
     @BindView(R.id.magic_indicator)
     MagicIndicator magicIndicator;

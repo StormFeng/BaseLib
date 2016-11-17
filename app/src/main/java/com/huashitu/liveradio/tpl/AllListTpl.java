@@ -6,12 +6,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.huashitu.liveradio.R;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.midian.base.bean.NetResult;
 import com.midian.base.view.BaseTpl;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -96,6 +94,7 @@ public class AllListTpl extends BaseTpl<NetResult> {
             llNum2.setVisibility(VISIBLE);
             rlTop.setVisibility(GONE);
             llNormal.setVisibility(VISIBLE);
+            tvRanking.setText("No."+position);
         }
     }
 }

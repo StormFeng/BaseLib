@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.midian.base.widget.BaseLibTopbarView
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.midian.base.widget.BaseLibTopbarView>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="第一步"
+                android:textColor="#A856CF"
+                android:textSize="27sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 请绑定微信"
+                android:textColor="#A5A1A6"
+                android:textSize="27sp"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="绑定的微信将成为你提现的帐户"
+            android:textColor="#A5A1A6"
+            android:layout_marginTop="41dp"
+            android:textSize="17sp"/>
+        
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_bigarrow"
+            android:layout_marginTop="49dp"/>
+        
+        <Button
+            android:id="@+id/btn_Bind"
+            android:layout_width="217dp"
+            android:layout_height="42dp"
+            android:text="绑定"
+            android:layout_marginTop="54dp"
+            android:textColor="@color/white"
+            android:background="@drawable/radius_22_purple"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

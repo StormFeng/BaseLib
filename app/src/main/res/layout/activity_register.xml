@@ -44,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="31.3dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <EditText
                 android:id="@+id/et_Code"
@@ -61,7 +62,7 @@
             <Button
                 android:id="@+id/btn_Code"
                 android:layout_width="60dp"
-                android:layout_height="16dp"
+                android:layout_height="18dp"
                 android:textColor="@color/white"
                 android:background="@drawable/radius_8_purple"
                 android:textSize="8sp"
@@ -86,6 +87,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:textSize="15.3sp"
+            android:inputType="textPassword"
             android:singleLine="true"
             android:hint="密码"/>
         <View

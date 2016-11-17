@@ -1,6 +1,7 @@
 package com.huashitu.liveradio.activity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,8 @@ public class Activity_Register extends BaseActivity {
     private String pass;
     private String code;
 
+    private CountDownTimer mCountDownTimer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,84 +61,90 @@ public class Activity_Register extends BaseActivity {
         code=etCode.getText().toString();
         switch (view.getId()) {
             case R.id.btn_Code:
-                ifPhoneRight();
-                String type="1";
-                AppUtil.getApiClient(ac).sendCode(phone,pass,type,apiCallback);
+                if(ifPhoneRight()){
+                    String type="1";
+                    AppUtil.getApiClient(ac).sendCode(phone,type,this);
+                }
                 break;
             case R.id.btn_Register:
-                ifAvaliable();
-                AppUtil.getApiClient(ac).register(phone,pass,code,apiCallback);
+                if(ifAvaliable()){
+                    AppUtil.getApiClient(ac).register(phone,pass,code,this);
+                }
                 break;
         }
     }
 
-    ApiCallback apiCallback=new ApiCallback() {
-        @Override
-        public void onApiStart(String tag) {
-
-        }
-
-        @Override
-        public void onApiLoading(long count, long current, String tag) {
-
-        }
-
-        @Override
-        public void onApiSuccess(NetResult res, String tag) {
-            if(res.isOK()){
-                if("sendCode".equals(tag)){
-                    UIHelper.t(_activity,"验证码已发送至手机");
-                }
-            }else{
-                ac.handleErrorCode(_activity,res.getRet_info());
+    @Override
+    public void onApiSuccess(NetResult res, String tag) {
+        if(res.isOK()){
+            if("sendCode".equals(tag)){
+                downTime();
+                UIHelper.t(_activity,"验证码已发送至手机");
+            }else if("register".equals(tag)){
+                UIHelper.t(_activity,"注册成功");
+                finish();
             }
-        }
-
-        @Override
-        public void onApiFailure(Throwable t, int errorNo, String strMsg, String tag) {
-
-        }
-
-        @Override
-        public void onParseError(String tag) {
-
-        }
-    };
-
-
-    private void ifPhoneRight(){
-        if("".equals(phone)){
-            AnimatorUtils.onVibrationView(etPhone);
-            BaseToast.show(_activity,"请输入手机号");
-            return;
-        }
-        if(!FormatUtils.isMobile(phone)){
-            AnimatorUtils.onVibrationView(etPhone);
-            BaseToast.show(_activity,"手机号格式不正确");
-            return;
+        }else{
+            ac.handleErrorCode(_activity,res.getRet_info());
         }
     }
 
-    private void ifAvaliable() {
+    private void downTime() {
+        mCountDownTimer = new CountDownTimer(59 * 1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                String timeText = "秒后重发";
+                btnCode.setBackgroundResource(R.drawable.radius_8_grey);
+                btnCode.setClickable(false);
+                btnCode
+                        .setText(millisUntilFinished / 1000 + timeText);
+            }
+
+            @Override
+            public void onFinish() {
+                btnCode.setBackgroundResource(R.drawable.radius_8_purple);
+                btnCode.setClickable(true);
+                btnCode.setText("验证码");
+            }
+        };
+        mCountDownTimer.start();
+    }
+
+    private boolean ifPhoneRight(){
         if("".equals(phone)){
             AnimatorUtils.onVibrationView(etPhone);
             BaseToast.show(_activity,"请输入手机号");
-            return;
+            return false;
         }
         if(!FormatUtils.isMobile(phone)){
             AnimatorUtils.onVibrationView(etPhone);
             BaseToast.show(_activity,"手机号格式不正确");
-            return;
+            return false;
+        }
+        return true;
+    }
+
+    private boolean ifAvaliable() {
+        if("".equals(phone)){
+            AnimatorUtils.onVibrationView(etPhone);
+            BaseToast.show(_activity,"请输入手机号");
+            return false;
+        }
+        if(!FormatUtils.isMobile(phone)){
+            AnimatorUtils.onVibrationView(etPhone);
+            BaseToast.show(_activity,"手机号格式不正确");
+            return false;
         }
         if("".equals(code)){
             AnimatorUtils.onVibrationView(etCode);
             BaseToast.show(_activity,"请输入验证码");
-            return;
+            return false;
         }
         if("".equals(pass)){
             AnimatorUtils.onVibrationView(etPass);
             BaseToast.show(_activity,"请输入密码");
-            return;
+            return false;
         }
+        return true;
     }
 }

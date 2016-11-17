@@ -61,7 +61,6 @@ public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnR
         banner.setDelayTime(5000);//设置轮播间隔时间
         for (int i = 0; i < 3; i++) {
             images.add(R.drawable.icon_banner);
-            LogUtils.e("添加数据");
         }
         banner.setImages(images.toArray());
         adapterHot.addHeaderView(topItem,0);

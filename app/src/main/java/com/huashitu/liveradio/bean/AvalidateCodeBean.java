@@ -5,11 +5,11 @@ import com.midian.base.app.AppException;
 import com.midian.base.bean.NetResult;
 
 /**
- * 发送验证码
+ * 验证验证码
  * Created by Administrator on 2016/11/15 0015.
  */
 
-public class SendCodeBean extends NetResult {
+public class AvalidateCodeBean extends NetResult {
 
     /**
      * content : {"code":"2723","phone":"18993399470"}
@@ -17,10 +17,10 @@ public class SendCodeBean extends NetResult {
 
     private Content content;
 
-    public static SendCodeBean parse(String json) throws AppException {
-        SendCodeBean res = new SendCodeBean();
+    public static AvalidateCodeBean parse(String json) throws AppException {
+        AvalidateCodeBean res = new AvalidateCodeBean();
         try {
-            res = gson.fromJson(json, SendCodeBean.class);
+            res = gson.fromJson(json, AvalidateCodeBean.class);
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
             throw AppException.json(e);

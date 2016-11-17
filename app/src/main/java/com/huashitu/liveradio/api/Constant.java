@@ -8,7 +8,23 @@ public class Constant {
 
     public static String BASEURL="http://115.159.145.219:8080/SanhaiApp";
 
+    /**
+     * 登录
+     */
     public static String LOGIN=BASEURL+"/user/login";
+
+    /**
+     * 注册
+     */
     public static String REGISTER=BASEURL+"/user/register";
+
+    /**
+     * 发送验证码
+     */
     public static String SENDCODE=BASEURL+"/validateCode/send_code";
+
+    /**
+     * 验证验证码
+     */
+    public static String VALIDATECODE=BASEURL+"/validateCode/validate_code";
 }

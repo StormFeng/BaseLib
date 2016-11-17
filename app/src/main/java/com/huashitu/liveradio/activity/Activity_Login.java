@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.api.AppUtil;
+import com.huashitu.liveradio.bean.LoginBean;
 import com.huashitu.liveradio.widget.BaseToast;
-import com.midian.base.api.ApiCallback;
 import com.midian.base.base.BaseActivity;
 import com.midian.base.bean.NetResult;
 import com.midian.base.util.AnimatorUtils;
@@ -57,6 +57,10 @@ public class Activity_Login extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(ac.isUserIdExsit()){
+            UIHelper.jump(_activity,Activity_Main.class);
+            return;
+        }
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         mShareAPI = UMShareAPI.get( this );
@@ -68,38 +72,9 @@ public class Activity_Login extends BaseActivity {
         phone=etPhone.getText().toString();
         switch (view.getId()) {
             case R.id.btn_Login:
-                ifAvaliable();
-                String phone=etPhone.getText().toString();
-                String pass=etPass.getText().toString();
-                AppUtil.getApiClient(ac).login(phone, pass, new ApiCallback() {
-                    @Override
-                    public void onApiStart(String tag) {
-
-                    }
-
-                    @Override
-                    public void onApiLoading(long count, long current, String tag) {
-
-                    }
-
-                    @Override
-                    public void onApiSuccess(NetResult res, String tag) {
-                        if(res.isOK()){
-                            LogUtils.e(res);
-                            UIHelper.jump(_activity,Activity_Main.class);
-                        }
-                    }
-
-                    @Override
-                    public void onApiFailure(Throwable t, int errorNo, String strMsg, String tag) {
-
-                    }
-
-                    @Override
-                    public void onParseError(String tag) {
-
-                    }
-                });
+                if(ifAvaliable()){
+                    AppUtil.getApiClient(ac).login(phone, pass, this);
+                }
                 break;
             case R.id.tv_ForgetPass:
                 break;
@@ -114,6 +89,20 @@ public class Activity_Login extends BaseActivity {
                 platform=SHARE_MEDIA.QQ;
                 mShareAPI.getPlatformInfo(_activity, platform, umAuthListener);
                 break;
+        }
+    }
+
+    @Override
+    public void onApiSuccess(NetResult res, String tag) {
+        super.onApiSuccess(res, tag);
+        if(res.isOK()){
+            LoginBean bean = (LoginBean) res;
+//            ac.saveUserInfo();
+            ac.setProperty("user_id", "0");
+            UIHelper.jump(_activity,Activity_Main.class);
+        }else{
+            AnimatorUtils.onVibrationView(btnLogin);
+            ac.handleErrorCode(_activity,res.getRet_info());
         }
     }
 
@@ -138,21 +127,22 @@ public class Activity_Login extends BaseActivity {
         }
     };
 
-    private void ifAvaliable() {
+    private boolean ifAvaliable() {
         if("".equals(phone)){
             AnimatorUtils.onVibrationView(etPhone);
             BaseToast.show(_activity,"请输入手机号");
-            return;
+            return false;
         }
         if(!FormatUtils.isMobile(phone)){
             AnimatorUtils.onVibrationView(etPhone);
             BaseToast.show(_activity,"手机号格式不正确");
-            return;
+            return false;
         }
         if("".equals(pass)){
             AnimatorUtils.onVibrationView(etPass);
             BaseToast.show(_activity,"请输入密码");
-            return;
+            return false;
         }
+        return true;
     }
 }
