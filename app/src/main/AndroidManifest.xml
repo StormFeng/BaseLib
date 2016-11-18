@@ -57,8 +57,12 @@
         <activity android:name=".activity.Activity_BindWechat"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-        <!--直播主页面-->
+        <!--自己直播主页面-->
         <activity android:name=".activity.Activity_LiveRadio"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--观看别人主播-->
+        <activity android:name=".activity.Activity_WatchRadio"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
 

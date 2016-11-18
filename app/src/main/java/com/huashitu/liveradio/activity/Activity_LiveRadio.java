@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.PermissionChecker;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
@@ -18,20 +17,17 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Toast;
-
 import com.alibaba.livecloud.live.AlivcMediaFormat;
 import com.alibaba.livecloud.live.AlivcMediaRecorder;
 import com.alibaba.livecloud.live.AlivcMediaRecorderFactory;
-import com.alibaba.livecloud.live.AlivcRecordReporter;
 import com.apkfuns.logutils.LogUtils;
-import com.duanqu.qupai.logger.DataStatistics;
 import com.huashitu.liveradio.R;
 import com.midian.base.base.BaseActivity;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 直播
+ * 自己直播
  * Created by Administrator on 2016/11/17 0017.
  */
 
@@ -241,41 +237,17 @@ public class Activity_LiveRadio extends BaseActivity {
 
     private GestureDetector mDetector;
     private ScaleGestureDetector mScaleDetector;
-    private GestureDetector.OnGestureListener mGestureDetector = new GestureDetector.OnGestureListener() {
-        @Override
-        public boolean onDown(MotionEvent motionEvent) {
-            LogUtils.e("onDown:"+motionEvent);
-            return false;
-        }
-
-        @Override
-        public void onShowPress(MotionEvent motionEvent) {
-            LogUtils.e("onShowPress:"+motionEvent);
-        }
+    private GestureDetector.SimpleOnGestureListener mGestureDetector = new GestureDetector.SimpleOnGestureListener(){
 
         @Override
         public boolean onSingleTapUp(MotionEvent motionEvent) {
             if (mPreviewWidth > 0 && mPreviewHeight > 0) {
                 float x = motionEvent.getX() / mPreviewWidth;
                 float y = motionEvent.getY() / mPreviewHeight;
+                LogUtils.e(motionEvent);
                 mMediaRecorder.focusing(x, y);
             }
             return true;
-        }
-
-        @Override
-        public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-            return false;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent motionEvent) {
-
-        }
-
-        @Override
-        public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent1, float v, float v1) {
-            return false;
         }
     };
 

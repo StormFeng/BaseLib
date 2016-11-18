@@ -82,8 +82,8 @@ public class Activity_Main extends BaseFragmentActivity implements RadioGroup.On
     @OnClick(R.id.iv_Camera)
     public void onClick() {
         String rtmpUrl="rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=test.example.com";
-        int videoResolution = 1080;
-        int cameraFrontFacing = AlivcMediaFormat.CAMERA_FACING_FRONT;
+        int videoResolution = AlivcMediaFormat.OUTPUT_RESOLUTION_1080P;
+        int cameraFrontFacing = AlivcMediaFormat.CAMERA_FACING_BACK;
         int minBitrate = 500;
         int maxBitrate = 800;
         int bestBitrate = 600;
