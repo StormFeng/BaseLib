@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <SurfaceView
-        android:id="@+id/camera_surface"
+        android:id="@+id/surfaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <LinearLayout
+        android:id="@+id/ll_Bot"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:weightSum="1">
+        <ImageButton
+            android:id="@+id/btn_Talk"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/icon_talk"
+            android:background="@drawable/radius_50_grey"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btn_Message"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/icon_message1"
+            android:background="@drawable/radius_50_grey"
+            android:layout_weight="0.00" />
+        <ImageButton
+            android:id="@+id/btn_Gift"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_gift"
+            android:background="@drawable/radius_50_grey"/>
+        <ImageButton
+            android:id="@+id/btn_Share"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_share"
+            android:background="@drawable/radius_50_grey"
+            android:layout_weight="0.00" />
+        <ImageButton
+            android:id="@+id/btn_Exit"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_exit"
+            android:background="@drawable/radius_50_grey"/>
+    </LinearLayout>
+    
 
 </FrameLayout>

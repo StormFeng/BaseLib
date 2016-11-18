@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分享"
+        android:textSize="15sp"
+        android:padding="15dp"
+        android:textColor="@color/text_bg99"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divide_line"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:id="@+id/tv_Circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朋友圈"
+                android:gravity="center"
+                android:drawableTop="@drawable/icon_circle_share"
+                android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_QQZone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ空间"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:drawableTop="@drawable/icon_qqzone_share"
+                android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_WeChat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:drawableTop="@drawable/icon_wechat_share"
+                android:drawablePadding="10dp"/>
+            <TextView
+                android:id="@+id/tv_QQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ"
+                android:gravity="center"
+                android:layout_marginLeft="50dp"
+                android:drawableTop="@drawable/icon_qq_share"
+                android:drawablePadding="10dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:id="@+id/tv_Sina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朋友圈"
+                android:gravity="center"
+                android:drawableTop="@drawable/icon_sina_share"
+                android:drawablePadding="10dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
