@@ -30,7 +30,6 @@ public class Fragment_Attention extends BaseFragment implements SwipeRefreshLayo
     @BindView(R.id.swipeLayout)
     SwipeRefreshLayout swipeLayout;
 
-    private int PAGE_SIZE=5;
     private int page=1;
     private Adapter_Attention adapterAttention;
     private List<AttentionBean> beans=new ArrayList<>();

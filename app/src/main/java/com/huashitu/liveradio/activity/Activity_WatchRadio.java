@@ -8,14 +8,13 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.widget.DialogFragmentTalk;
 import com.huashitu.liveradio.widget.ShareDialog;
-import com.midian.base.base.BaseActivity;
-
+import com.midian.base.base.BaseFragmentActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +24,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2016/11/18 0018.
  */
 
-public class Activity_WatchRadio extends BaseActivity {
+public class Activity_WatchRadio extends BaseFragmentActivity {
 
     @BindView(R.id.surfaceView)
     SurfaceView mSurfaceView;
@@ -161,6 +160,7 @@ public class Activity_WatchRadio extends BaseActivity {
             case R.id.btn_Talk:
                 break;
             case R.id.btn_Message:
+                new DialogFragmentTalk().show(fm,"btn_Message");
                 break;
             case R.id.btn_Gift:
                 break;
@@ -169,6 +169,7 @@ public class Activity_WatchRadio extends BaseActivity {
                         "http://mengzhu.img-cn-shenzhen.aliyuncs.com/8a995245582430320158247ca4890008@800h_1000w_1080x480", "").show();
                 break;
             case R.id.btn_Exit:
+                finish();
                 break;
         }
     }
