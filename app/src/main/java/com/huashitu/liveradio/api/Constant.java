@@ -8,6 +8,9 @@ public class Constant {
 
     public static String BASEURL="http://115.159.145.219:8080/SanhaiApp";
 
+
+    public static String HOT="http://live.9158.com/Fans/GetHotLive";
+
     /**
      * 登录
      */

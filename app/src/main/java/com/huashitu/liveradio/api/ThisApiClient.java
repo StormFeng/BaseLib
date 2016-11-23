@@ -1,6 +1,7 @@
 package com.huashitu.liveradio.api;
 
 import com.huashitu.liveradio.bean.AvalidateCodeBean;
+import com.huashitu.liveradio.bean.HotBean;
 import com.huashitu.liveradio.bean.LoginBean;
 import com.huashitu.liveradio.bean.RegisterBean;
 import com.huashitu.liveradio.bean.SendCodeBean;
@@ -10,6 +11,9 @@ import com.midian.base.api.BaseApiClient;
 import com.midian.base.app.AppContext;
 import com.midian.base.util.Md5Utils;
 import com.umeng.socialize.UmengTool;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Created by Administrator on 2016/11/14 0014.
@@ -24,6 +28,12 @@ public class ThisApiClient extends BaseApiClient {
         if (appcontext == null)
             return;
         appcontext.api.addApiClient(new ThisApiClient(appcontext));
+    }
+
+    public void getHotLiveRadio(String page,ApiCallback callback){
+        AjaxParams params = new AjaxParams();
+        params.put(page,"1");
+        get(callback,Constant.HOT,params, HotBean.class,getMethodName(Thread.currentThread().getStackTrace()));
     }
 
     /**

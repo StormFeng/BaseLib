@@ -22,16 +22,16 @@ public class Dao {
         return beans;
     }
 
-    public static List<HotBean> getHotBean(){
-        List<HotBean> beans=new ArrayList<>();
-        HotBean item=new HotBean();
-        item.setItemType(0);
-        beans.add(item);
-        for(int i=0;i<20;i++){
-            HotBean bean=new HotBean();
-            bean.setItemType(1);
-            beans.add(bean);
-        }
-        return beans;
-    }
+//    public static List<HotBean> getHotBean(){
+//        List<HotBean> beans=new ArrayList<>();
+//        HotBean item=new HotBean();
+//        item.setItemType(0);
+//        beans.add(item);
+//        for(int i=0;i<20;i++){
+//            HotBean bean=new HotBean();
+//            bean.setItemType(1);
+//            beans.add(bean);
+//        }
+//        return beans;
+//    }
 }

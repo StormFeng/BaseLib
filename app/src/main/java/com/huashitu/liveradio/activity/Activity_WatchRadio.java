@@ -1,7 +1,10 @@
 package com.huashitu.liveradio.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,9 +15,13 @@ import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.adapter.Adapter_Audience;
+import com.huashitu.liveradio.bean.AudienceBean;
 import com.huashitu.liveradio.widget.DialogFragmentTalk;
 import com.huashitu.liveradio.widget.ShareDialog;
 import com.midian.base.base.BaseFragmentActivity;
+import java.util.ArrayList;
+import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -38,12 +45,17 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
     ImageButton btnShare;
     @BindView(R.id.btn_Exit)
     ImageButton btnExit;
-    @BindView(R.id.ll_Bot)
-    LinearLayout llBot;
+    @BindView(R.id.ll_UI)
+    LinearLayout llUI;
+    @BindView(R.id.recycleView)
+    RecyclerView recycleView;
 
     private SurfaceHolder mSurfaceHolder;
     private AliVcMediaPlayer mPlayer;
-    private String msUri = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+    private String msUri = "http://hdl.9158.com/live/8c3321184dfdb8c0ba2b940d13e48b33.flv";
+    private List<AudienceBean> audienceBeans=new ArrayList<>();
+    private Adapter_Audience adapterAudience;
+//    private String msUri = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
 
 
     @Override
@@ -51,6 +63,15 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watchradio);
         ButterKnife.bind(this);
+        msUri=mBundle.getString("url");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(_activity);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recycleView.setLayoutManager(linearLayoutManager);
+        for(int i=0;i<10;i++){
+            audienceBeans.add(new AudienceBean());
+        }
+        adapterAudience=new Adapter_Audience(audienceBeans);
+        recycleView.setAdapter(adapterAudience);
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(mSurfaceHolderCB);
     }
@@ -102,15 +123,21 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
         @Override
         public void onPrepared() {
             mPlayer.setVideoScalingMode(MediaPlayer.VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-            Handler mTimerHandler=new Handler();
-            mTimerHandler.postDelayed(mUIRunnable, 100);
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    mSurfaceView.setBackgroundColor(Color.parseColor("#00FFFFFF"));
+                }
+            });
         }
     };
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            mPlayer.pause();
+            if (mPlayer != null) {
+                mPlayer.pause();
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
@@ -139,20 +166,6 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
         super.onDestroy();
     }
 
-    Runnable mUIRunnable = new Runnable() {
-        @Override
-        public void run() {
-            showUi(true);
-        }
-    };
-
-    private void showUi(boolean isShow){
-        if(isShow){
-            llBot.setVisibility(View.VISIBLE);
-        }
-    }
-
-
 
     @OnClick({R.id.btn_Talk, R.id.btn_Message, R.id.btn_Gift, R.id.btn_Share, R.id.btn_Exit})
     public void onClick(View view) {
@@ -160,7 +173,7 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
             case R.id.btn_Talk:
                 break;
             case R.id.btn_Message:
-                new DialogFragmentTalk().show(fm,"btn_Message");
+                new DialogFragmentTalk().show(fm, "btn_Message");
                 break;
             case R.id.btn_Gift:
                 break;

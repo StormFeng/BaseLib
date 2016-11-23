@@ -1,64 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <SurfaceView
         android:id="@+id/surfaceView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/window_bg" />
     <LinearLayout
-        android:id="@+id/ll_Bot"
-        android:visibility="visible"
+        android:id="@+id/ll_UI"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="30dp"
-        android:gravity="center"
-        android:weightSum="1">
-        <ImageButton
-            android:id="@+id/btn_Talk"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/icon_talk"
-            android:background="@drawable/radius_50_grey"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@drawable/radius_50_grey"
+                    android:gravity="center"
+                    android:paddingRight="8dp"
+                    android:orientation="horizontal">
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:riv_corner_radius="30dp"
+                        android:src="@drawable/icon_test"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:text="直播"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:text="11231"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="关注"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:textSize="13sp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/radius_22_purple"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/radius_50_grey"
+                    android:text="映票：13565655"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp">
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
         <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"/>
-        <ImageButton
-            android:id="@+id/btn_Message"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:src="@drawable/icon_message1"
-            android:background="@drawable/radius_50_grey"
-            android:layout_weight="0.00" />
-        <ImageButton
-            android:id="@+id/btn_Gift"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_gift"
-            android:background="@drawable/radius_50_grey"/>
-        <ImageButton
-            android:id="@+id/btn_Share"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_share"
-            android:background="@drawable/radius_50_grey"
-            android:layout_weight="0.00" />
-        <ImageButton
-            android:id="@+id/btn_Exit"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/icon_exit"
-            android:background="@drawable/radius_50_grey"/>
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:gravity="center"
+            android:weightSum="1">
+            <ImageButton
+                android:id="@+id/btn_Talk"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/icon_talk"
+                android:background="@drawable/radius_50_grey"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+            <ImageButton
+                android:id="@+id/btn_Message"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/icon_message1"
+                android:background="@drawable/radius_50_grey"
+                android:layout_weight="0.00" />
+            <ImageButton
+                android:id="@+id/btn_Gift"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_gift"
+                android:background="@drawable/radius_50_grey"/>
+            <ImageButton
+                android:id="@+id/btn_Share"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_share"
+                android:background="@drawable/radius_50_grey"
+                android:layout_weight="0.00" />
+            <ImageButton
+                android:id="@+id/btn_Exit"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_exit"
+                android:background="@drawable/radius_50_grey"/>
+        </LinearLayout>
     </LinearLayout>
-    
-
 </FrameLayout>
