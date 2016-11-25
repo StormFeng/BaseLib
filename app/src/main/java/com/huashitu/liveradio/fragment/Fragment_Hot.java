@@ -40,7 +40,7 @@ import rx.Subscriber;
  * Created by Administrator on 2016/11/10 0010.
  */
 
-public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, Banner.OnBannerClickListener {
+public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, Banner.OnBannerClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
@@ -48,11 +48,11 @@ public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnR
     SwipeRefreshLayout swipeLayout;
 
     private Banner banner;
-
     private Adapter_Hot adapterHot;
     private List<Integer> images=new ArrayList<>();
     private List<HotBean.ListBean> hotBeans=new ArrayList<>();
     private View topItem;
+    private int page=1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnR
     }
 
     private void init(){
-        HttpMethods.getInstance().getHotLiveRadio(new HotSubscriber());
+        HttpMethods.getInstance().getHotLiveRadio(new RefreshSubscriber(),page);
         recycleView.setLayoutManager(new LinearLayoutManager(_activity));
         swipeLayout.setOnRefreshListener(this);
         adapterHot = new Adapter_Hot(_activity, hotBeans);
@@ -79,10 +79,18 @@ public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnR
         }
         banner.setImages(images.toArray());
         adapterHot.addHeaderView(topItem,0);
+        adapterHot.openLoadAnimation();
+        adapterHot.openLoadMore(20,true);
+        adapterHot.setOnLoadMoreListener(this);
         recycleView.setAdapter(adapterHot);
     }
 
-    private class HotSubscriber extends BaseSubcriber{
+    @Override
+    public void onLoadMoreRequested() {
+        HttpMethods.getInstance().getHotLiveRadio(new OnLoadMoreSubscriber(),++page);
+    }
+
+    private class RefreshSubscriber extends BaseSubcriber{
         @Override
         public void onNext(Object o) {
             super.onNext(o);
@@ -94,10 +102,24 @@ public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnR
         }
     }
 
+    private class OnLoadMoreSubscriber extends BaseSubcriber{
+        @Override
+        public void onNext(Object o) {
+            super.onNext(o);
+            List<HotBean.ListBean> list = ((HotBean) o).getList();
+            adapterHot.notifyDataChangedAfterLoadMore(list,true);
+            if(list.size()<20){
+                adapterHot.notifyDataChangedAfterLoadMore(false);
+            }
+
+        }
+    }
+
 
     @Override
     public void onRefresh() {
-        HttpMethods.getInstance().getHotLiveRadio(new HotSubscriber());
+        page=1;
+        HttpMethods.getInstance().getHotLiveRadio(new RefreshSubscriber(),1);
     }
 
     @Override

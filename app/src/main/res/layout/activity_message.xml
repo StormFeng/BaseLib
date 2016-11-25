@@ -4,14 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingLeft="14dp"
         android:paddingRight="14dp"
-        android:paddingTop="27dp"
+        android:paddingTop="5dp"
         android:background="@drawable/icon_topbar_bg">
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,38 +18,32 @@
             android:orientation="horizontal"
             android:gravity="center">
             <ImageView
-                android:id="@+id/iv_Search"
+                android:id="@+id/iv_Back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_question"/>
+                android:src="@drawable/icon_back"/>
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/magic_Indicator"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"/>
-
-            <ImageView
+            <TextView
+                android:id="@+id/tv_Ignore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/icon_message"
-                android:id="@+id/iv_Message" />
+                android:text="忽略未读"
+                android:textColor="#FFFFFF"/>
         </LinearLayout>
-        <ImageView
-            android:id="@+id/iv_Arrow"
-            android:layout_width="18dp"
-            android:layout_height="7dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:background="@drawable/icon_arrow_down"/>
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </android.support.v4.view.ViewPager>
-
-
 </LinearLayout>

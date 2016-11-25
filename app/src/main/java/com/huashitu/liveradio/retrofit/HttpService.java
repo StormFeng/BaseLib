@@ -12,6 +12,11 @@ import rx.Observable;
 
 public interface HttpService {
 
+    /**
+     * 热门主播
+     * @param options
+     * @return
+     */
     @GET("GetHotLive")
     Observable<HttpResult<HotBean>> getHotLiveRadio(@QueryMap Map<String,String> options);
 }

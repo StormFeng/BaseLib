@@ -9,10 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import com.huashitu.liveradio.R;
+import com.huashitu.liveradio.activity.Activity_Message;
 import com.huashitu.liveradio.adapter.Adapter_Main;
 import com.huashitu.liveradio.widget.ScaleTransitionPagerTitleView;
 import com.midian.base.base.BaseFragment;
+import com.midian.base.util.UIHelper;
+
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -27,6 +31,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 首页
@@ -40,6 +45,10 @@ public class Fragment_Home extends BaseFragment {
     ViewPager viewPager;
     @BindView(R.id.iv_Arrow)
     ImageView ivArrow;
+    @BindView(R.id.iv_Search)
+    ImageView ivSearch;
+    @BindView(R.id.iv_Message)
+    ImageView ivMessage;
 
     private List<String> mDataList = new ArrayList<>();
     private List<Fragment> fragments = new ArrayList<>();
@@ -61,7 +70,7 @@ public class Fragment_Home extends BaseFragment {
         return v;
     }
 
-    ViewPager.OnPageChangeListener onPageChangeListener=new ViewPager.OnPageChangeListener() {
+    ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -69,9 +78,9 @@ public class Fragment_Home extends BaseFragment {
 
         @Override
         public void onPageSelected(int position) {
-            if(position==1){
+            if (position == 1) {
                 ivArrow.setBackgroundResource(R.drawable.icon_arrow_down);
-            }else{
+            } else {
                 ivArrow.setBackgroundColor(Color.TRANSPARENT);
             }
         }
@@ -118,5 +127,16 @@ public class Fragment_Home extends BaseFragment {
         });
         magicIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magicIndicator, viewPager);
+    }
+
+    @OnClick({R.id.iv_Search, R.id.iv_Message})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_Search:
+                break;
+            case R.id.iv_Message:
+                UIHelper.jump(_activity, Activity_Message.class);
+                break;
+        }
     }
 }

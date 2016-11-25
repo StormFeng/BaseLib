@@ -74,9 +74,9 @@ public class HttpMethods {
      * 热门主播
      * @param subscriber
      */
-    public void getHotLiveRadio(Subscriber<HotBean> subscriber){
+    public void getHotLiveRadio(Subscriber<HotBean> subscriber,int page){
         Map<String,String> map=new HashMap<>();
-        map.put("page","1");
+        map.put("page",page+"");
         LogUtils.e(map);
         Observable<HotBean> observable = httpService.getHotLiveRadio(map)
                 .map(new HttpResultFunc<HotBean>());

@@ -187,6 +187,7 @@
                 android:text="映票贡献榜"
                 android:textColor="#938E95"
                 android:textSize="16sp"
+                android:background="@drawable/ripple_bg"
                 android:drawableRight="@drawable/icon_right_arrow"/>
             <View
                 android:layout_width="match_parent"
@@ -197,7 +198,8 @@
             <LinearLayout
                 android:id="@+id/v_Profit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_bg">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -231,7 +233,8 @@
             <LinearLayout
                 android:id="@+id/v_Account"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_bg">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -265,7 +268,8 @@
             <LinearLayout
                 android:id="@+id/v_Grade"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_bg">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -307,35 +311,40 @@
                 android:text="设置"
                 android:textColor="#938E95"
                 android:textSize="16sp"
-                android:layout_marginBottom="46.7dp"
-                android:drawableRight="@drawable/icon_right_arrow"/>
+                android:drawableRight="@drawable/icon_right_arrow"
+                android:background="@drawable/ripple_bg"/>
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_height="70dp"
+        android:orientation="vertical"
         android:paddingLeft="14dp"
         android:paddingRight="14dp"
-        android:paddingTop="27dp">
-
-        <ImageView
-            android:id="@+id/iv_Search"
-            android:layout_width="wrap_content"
+        android:paddingTop="31dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_question"/>
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/iv_Search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_question"/>
+            <View
+                android:id="@+id/magic_Indicator"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="1dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="1dp"/>
-        <ImageView
-            android:id="@+id/iv_Message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_message"/>
+            <ImageView
+                android:id="@+id/iv_Message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_message" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

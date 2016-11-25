@@ -16,6 +16,6 @@ public class BaseApplication extends AppContext {
         super.onCreate();
         ShareUtil.init();
         ThisApiClient.init(this);
-        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY,"fVFi9etkRpo4Bbmi2N8N11ac");
+//        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY,"fVFi9etkRpo4Bbmi2N8N11ac");
     }
 }

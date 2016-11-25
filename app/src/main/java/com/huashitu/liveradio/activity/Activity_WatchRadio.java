@@ -9,8 +9,12 @@ import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+
 import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.apkfuns.logutils.LogUtils;
@@ -18,10 +22,13 @@ import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.adapter.Adapter_Audience;
 import com.huashitu.liveradio.bean.AudienceBean;
 import com.huashitu.liveradio.widget.DialogFragmentTalk;
+import com.huashitu.liveradio.widget.DialogSendMessage;
 import com.huashitu.liveradio.widget.ShareDialog;
 import com.midian.base.base.BaseFragmentActivity;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,11 +56,13 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
     LinearLayout llUI;
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
+    @BindView(R.id.ll_BotButton)
+    LinearLayout llBotButton;
 
     private SurfaceHolder mSurfaceHolder;
     private AliVcMediaPlayer mPlayer;
     private String msUri = "http://hdl.9158.com/live/8c3321184dfdb8c0ba2b940d13e48b33.flv";
-    private List<AudienceBean> audienceBeans=new ArrayList<>();
+    private List<AudienceBean> audienceBeans = new ArrayList<>();
     private Adapter_Audience adapterAudience;
 //    private String msUri = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
 
@@ -61,16 +70,17 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_MASK_ADJUST);
         setContentView(R.layout.activity_watchradio);
         ButterKnife.bind(this);
-        msUri=mBundle.getString("url");
+        msUri = mBundle.getString("url");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(_activity);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycleView.setLayoutManager(linearLayoutManager);
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 10; i++) {
             audienceBeans.add(new AudienceBean());
         }
-        adapterAudience=new Adapter_Audience(audienceBeans);
+        adapterAudience = new Adapter_Audience(_activity, audienceBeans);
         recycleView.setAdapter(adapterAudience);
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(mSurfaceHolderCB);
@@ -171,6 +181,9 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_Talk:
+                DialogSendMessage dialogSendMessage = new DialogSendMessage(_activity);
+                dialogSendMessage.show();
+                dialogSendMessage.getEtContent().getShowSoftInputOnFocus();
                 break;
             case R.id.btn_Message:
                 new DialogFragmentTalk().show(fm, "btn_Message");

@@ -65,6 +65,10 @@
         <activity android:name=".activity.Activity_WatchRadio"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
+        <!--消息-->
+        <activity android:name=".activity.Activity_Message"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
 
         <receiver android:name="com.huashitu.liveradio.BaiduPushReceiver">
             <intent-filter>

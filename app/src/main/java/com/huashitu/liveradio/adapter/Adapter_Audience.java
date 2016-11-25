@@ -1,9 +1,13 @@
 package com.huashitu.liveradio.adapter;
 
+import android.content.Context;
+import android.view.View;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.bean.AudienceBean;
+import com.huashitu.liveradio.widget.DialogAudienceDetail;
 
 import java.util.List;
 
@@ -14,12 +18,20 @@ import java.util.List;
 
 public class Adapter_Audience extends BaseQuickAdapter{
 
-    public Adapter_Audience(List<AudienceBean> data) {
+    private Context context;
+
+    public Adapter_Audience(Context context,List<AudienceBean> data) {
         super(R.layout.item_audience, data);
+        this.context=context;
     }
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, Object o) {
-
+        baseViewHolder.setOnClickListener(R.id.iv_Head, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DialogAudienceDetail(context).show();
+            }
+        });
     }
 }
