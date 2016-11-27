@@ -8,6 +8,7 @@ android {
         applicationId "com.huashitu.liveradio"
         minSdkVersion 21
         targetSdkVersion 24
+
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -18,20 +19,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    signingConfigs {
-        release {
-            storeFile file("$rootDir/liveradio.jks")
-            storePassword "radio123"
-            keyAlias "liveradio"
-            keyPassword "radio123"
-        }
-        debug {
-            storeFile file("$rootDir/liveradio.jks")
-            storePassword "radio123"
-            keyAlias "liveradio"
-            keyPassword "radio123"
-        }
-    }
+//    signingConfigs {
+//        release {
+//            storeFile file("$rootDir/liveradio.jks")
+//            storePassword "radio123"
+//            keyAlias "liveradio"
+//            keyPassword "radio123"
+//        }
+//        debug {
+//            storeFile file("$rootDir/liveradio.jks")
+//            storePassword "radio123"
+//            keyAlias "liveradio"
+//            keyPassword "radio123"
+//        }
+//    }
 }
 
 dependencies {

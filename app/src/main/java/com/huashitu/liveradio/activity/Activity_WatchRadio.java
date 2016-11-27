@@ -1,5 +1,6 @@
 package com.huashitu.liveradio.activity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,10 +11,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
@@ -28,6 +31,8 @@ import com.midian.base.base.BaseFragmentActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +43,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2016/11/18 0018.
  */
 
-public class Activity_WatchRadio extends BaseFragmentActivity {
+public class Activity_WatchRadio extends BaseFragmentActivity{
 
     @BindView(R.id.surfaceView)
     SurfaceView mSurfaceView;
@@ -65,7 +70,7 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
     private List<AudienceBean> audienceBeans = new ArrayList<>();
     private Adapter_Audience adapterAudience;
 //    private String msUri = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
-
+    InputMethodManager inputMethodManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +89,8 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
         recycleView.setAdapter(adapterAudience);
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(mSurfaceHolderCB);
+        inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
     }
 
     private SurfaceHolder.Callback mSurfaceHolderCB = new SurfaceHolder.Callback() {
@@ -183,7 +190,9 @@ public class Activity_WatchRadio extends BaseFragmentActivity {
             case R.id.btn_Talk:
                 DialogSendMessage dialogSendMessage = new DialogSendMessage(_activity);
                 dialogSendMessage.show();
-                dialogSendMessage.getEtContent().getShowSoftInputOnFocus();
+                final EditText etContent = dialogSendMessage.getEtContent();
+                etContent.getShowSoftInputOnFocus();
+                etContent.requestFocus();
                 break;
             case R.id.btn_Message:
                 new DialogFragmentTalk().show(fm, "btn_Message");

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/ll_Talk"
-        android:layout_width="match_parent"
+        android:layout_width="360dp"
         android:layout_height="47dp"
         android:orientation="horizontal"
         android:background="#99999999"
@@ -47,6 +47,7 @@
                 android:layout_margin="5dp"
                 android:background="@color/divide_line"/>
             <Button
+                android:id="@+id/btn_SendMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@null"
