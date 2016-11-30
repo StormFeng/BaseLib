@@ -14,6 +14,10 @@ import android.widget.EditText;
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.R;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -28,6 +32,9 @@ public class DialogSendMessage extends Dialog implements View.OnClickListener {
     @BindView(R.id.btn_SendMessage)
     Button btnSendMessage;
     private Context context;
+    private int[] location = new int[2];
+    private int[] flag = new int[]{0,0};
+
 
     public DialogSendMessage(Context context) {
         super(context, R.style.aaa);
@@ -60,14 +67,21 @@ public class DialogSendMessage extends Dialog implements View.OnClickListener {
         btnSendMessage.setOnClickListener(this);
     }
 
+    @Override
+    public void show() {
+        super.show();
+        etContent.getLocationOnScreen(location);
+    }
+
     public EditText getEtContent() {
         return etContent;
     }
 
     @Override
     public void onClick(View v) {
-        int[] location = new int[2];
-        etContent.getLocationInWindow(location);
-        LogUtils.e(location);
+        InputMethodManager inputMethodManager=(InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        LogUtils.e(inputMethodManager.isAcceptingText());
+        LogUtils.e(inputMethodManager.isActive());
+
     }
 }

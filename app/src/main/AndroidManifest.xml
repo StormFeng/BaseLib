@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
-        <activity android:name=".activity.Activity_Login">
+        <activity android:name=".activity.Activity_Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,10 +29,10 @@
         <activity android:name=".activity.Activity_Register"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-        <!--Home-->
-        <activity android:name=".activity.Activity_Main"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop"/>
+        <!--&lt;!&ndash;Home&ndash;&gt;-->
+        <!--<activity android:name=".activity.Activity_Main"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:launchMode="singleTop"/>-->
         <!--映票贡献榜-->
         <activity android:name=".activity.Activity_Contribution"
             android:screenOrientation="portrait"
