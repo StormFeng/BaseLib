@@ -98,7 +98,6 @@ public class Fragment_Hot extends BaseFragment implements SwipeRefreshLayout.OnR
             HotBean bean = (HotBean) o;
             hotBeans=bean.getList();
             adapterHot.setNewData(hotBeans);
-            LogUtils.e(hotBeans.size());
         }
     }
 

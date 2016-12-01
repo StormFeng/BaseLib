@@ -2,10 +2,16 @@ package com.huashitu.liveradio.retrofit;
 
 import com.apkfuns.logutils.LogUtils;
 import com.huashitu.liveradio.bean.HotBean;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -29,6 +35,7 @@ public class HttpMethods {
     private HttpMethods() {
         //手动创建一个OkHttpClient并设置超时时间
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        httpClientBuilder.addInterceptor(new LogInterceptor());
         httpClientBuilder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         retrofit = new Retrofit.Builder()
                 .client(httpClientBuilder.build())
@@ -77,10 +84,8 @@ public class HttpMethods {
     public void getHotLiveRadio(Subscriber<HotBean> subscriber,int page){
         Map<String,String> map=new HashMap<>();
         map.put("page",page+"");
-        LogUtils.e(map);
         Observable<HotBean> observable = httpService.getHotLiveRadio(map)
                 .map(new HttpResultFunc<HotBean>());
         toSubscribe(observable,subscriber);
-        LogUtils.e("getHotLiveRadio");
     }
 }

@@ -22,6 +22,6 @@ public class BaseSubcriber extends Subscriber {
 
     @Override
     public void onNext(Object o) {
-        LogUtils.d(o);
+        LogUtils.e("请求结果:"+o);
     }
 }
