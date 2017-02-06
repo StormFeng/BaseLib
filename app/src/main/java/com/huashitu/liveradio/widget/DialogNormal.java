@@ -53,13 +53,21 @@ public class DialogNormal extends Dialog {
         ButterKnife.bind(this, v);
     }
 
-    @OnClick({R.id.btn_cancel, R.id.btn_ok})
+    public DialogNormal setTitle(String title){
+        tvNotice.setText(title);
+        return this;
+    }
+
+    public DialogNormal setBtnOkEvent(View.OnClickListener onClickListener){
+        btnOk.setOnClickListener(onClickListener);
+        return this;
+    }
+
+    @OnClick({R.id.btn_cancel})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_cancel:
                 dismiss();
-                break;
-            case R.id.btn_ok:
                 break;
         }
     }

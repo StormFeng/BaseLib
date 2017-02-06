@@ -1,7 +1,11 @@
 package com.huashitu.liveradio.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,12 +16,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-
 import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.apkfuns.logutils.LogUtils;
@@ -25,14 +26,12 @@ import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.adapter.Adapter_Audience;
 import com.huashitu.liveradio.bean.AudienceBean;
 import com.huashitu.liveradio.widget.DialogFragmentTalk;
+import com.huashitu.liveradio.widget.DialogNormal;
 import com.huashitu.liveradio.widget.DialogSendMessage;
 import com.huashitu.liveradio.widget.ShareDialog;
 import com.midian.base.base.BaseFragmentActivity;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,6 +71,8 @@ public class Activity_WatchRadio extends BaseFragmentActivity{
 //    private String msUri = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
     InputMethodManager inputMethodManager;
 
+    private NetworkChangedReceiver networkChangedReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +91,10 @@ public class Activity_WatchRadio extends BaseFragmentActivity{
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(mSurfaceHolderCB);
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        networkChangedReceiver=new NetworkChangedReceiver();
+        registerReceiver(networkChangedReceiver,filter);
     }
 
     private SurfaceHolder.Callback mSurfaceHolderCB = new SurfaceHolder.Callback() {
@@ -180,6 +184,7 @@ public class Activity_WatchRadio extends BaseFragmentActivity{
             mPlayer.destroy();
             mPlayer = null;
         }
+        unregisterReceiver(networkChangedReceiver);
         super.onDestroy();
     }
 
@@ -208,4 +213,31 @@ public class Activity_WatchRadio extends BaseFragmentActivity{
                 break;
         }
     }
+
+    public class NetworkChangedReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(WifiManager.WIFI_STATE_CHANGED_ACTION.equals(intent.getAction())){
+                int intExtra = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, 0);
+                System.out.println(intExtra);
+                switch ((intExtra)){
+                    case WifiManager.WIFI_STATE_DISABLED:
+                        final DialogNormal dialogNormal = new DialogNormal(context);
+                        dialogNormal.setTitle("当前为移动网络，继续观看直播吗？").setBtnOkEvent(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                mPlayer.play();
+                                dialogNormal.dismiss();
+                            }
+                        });
+                        break;
+                    case WifiManager.WIFI_STATE_ENABLED:
+                        mPlayer.play();
+                        break;
+                }
+            }
+        }
+    }
+
 }

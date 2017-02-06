@@ -1,6 +1,7 @@
 package com.huashitu.liveradio.adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.huashitu.liveradio.R;
 import com.huashitu.liveradio.activity.Activity_WatchRadio;
 import com.huashitu.liveradio.bean.HotBean;
+import com.huashitu.liveradio.widget.DialogNormal;
+import com.midian.base.util.NetworkUtils;
 import com.midian.base.util.UIHelper;
 import java.util.List;
 
@@ -37,9 +40,22 @@ public class Adapter_Hot extends BaseQuickAdapter<HotBean.ListBean> {
                 .setOnClickListener(R.id.ll_Item, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Bundle bundle=new Bundle();
-                        bundle.putString("url",item.getFlv());
-                        UIHelper.jump((Activity) context,Activity_WatchRadio.class,bundle);
+                        if(NetworkUtils.isWifi(context)){
+                            Bundle bundle=new Bundle();
+                            bundle.putString("url",item.getFlv());
+                            UIHelper.jump((Activity) context,Activity_WatchRadio.class,bundle);
+                        }else{
+                            final DialogNormal dialogNormal = new DialogNormal(context);
+                            dialogNormal.setTitle("当前为移动网络，继续观看直播吗？").setBtnOkEvent(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialogNormal.dismiss();
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("url",item.getFlv());
+                                    UIHelper.jump((Activity) context,Activity_WatchRadio.class,bundle);
+                                }
+                            }).show();
+                        }
                     }
                 });
         Glide.with(context).load(item.getSmallpic()).into((ImageView) baseViewHolder.getView(R.id.iv_Head));
