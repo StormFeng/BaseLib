@@ -19,6 +19,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
 import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 import com.apkfuns.logutils.LogUtils;
@@ -30,12 +32,19 @@ import com.huashitu.liveradio.widget.DialogNormal;
 import com.huashitu.liveradio.widget.DialogSendMessage;
 import com.huashitu.liveradio.widget.ShareDialog;
 import com.midian.base.base.BaseFragmentActivity;
+import com.midian.base.util.UIHelper;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.functions.Action1;
+
+import static com.alivc.player.MediaPlayer.ALIVC_ERR_INVALID_INPUTFILE;
 
 /**
  * 观看别人直播
@@ -137,6 +146,17 @@ public class Activity_WatchRadio extends BaseFragmentActivity{
     AliVcMediaPlayer.MediaPlayerErrorListener errorListener = new MediaPlayer.MediaPlayerErrorListener() {
         @Override
         public void onError(int what, int extra) {
+            switch (what){
+                case ALIVC_ERR_INVALID_INPUTFILE:
+                    UIHelper.t(_activity,"视频资源或网络不可用！");
+                    Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
+                        @Override
+                        public void call(Long aLong) {
+                            finish();
+                        }
+                    });
+                    break;
+            }
             LogUtils.e("视频播放错误码：" + what);
         }
     };
@@ -233,7 +253,9 @@ public class Activity_WatchRadio extends BaseFragmentActivity{
                         });
                         break;
                     case WifiManager.WIFI_STATE_ENABLED:
-                        mPlayer.play();
+                        if(mPlayer!=null){
+                            mPlayer.play();
+                        }
                         break;
                 }
             }
